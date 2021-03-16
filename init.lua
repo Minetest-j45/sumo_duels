@@ -1,5 +1,7 @@
 sumo_duels = {}
 
+minetest.register_privilege("play", "Player can play.")
+
 local mp = minetest.get_modpath(minetest.get_current_modname())
 
 dofile(mp .. "/antibuildmine.lua")
