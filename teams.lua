@@ -10,6 +10,11 @@ sumo_duels.set_waiting = function(pname, arena_number)
 	table.insert(sumo_duels[waiting_arena_ .. arena_number], pname)
 end
 
+sumo_duels.set_lobby = function(pname, current)
+	table.remove(current, name)
+	table.insert(sumo_duels[lobby], name)
+end
+
 sumo_deuls.get_player_team = function(name)
 	for k, team in pairs(sumo_deuls.teams) do
 		for _, pname in ipairs(team) do
@@ -43,6 +48,10 @@ minetest.register_globalstep(function(dtime)
 			for name, sumo_duels.teams[waiting_arena_1] = 1,2 do
 				sumo_duels.set_playing(name, "1")
 			end
+		end
+	elseif #sumo_deuls.teams[arena_1] == 1 then
+		for name, sumo_duels.teams[arena_1] = 1 do
+			sumo_duels.set_lobby(name, arena_1)
 		end
 	end
 end)
