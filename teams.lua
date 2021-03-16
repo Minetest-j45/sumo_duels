@@ -2,16 +2,19 @@ sumo_deuls.teams = {lobby = {}, waiting_arena_1 = {}, arena_1 = {}}
 
 sumo_duels.set_playing = function(pname, arena_number)
 	table.remove(sumo_duels[waiting_arena_ .. arena_number], pname)
+	--set pos arena_1
 	table.insert(sumo_duels[arena_ .. arena_number], pname)
 end
 
 sumo_duels.set_waiting = function(pname, arena_number)
 	table.remove(sumo_duels[lobby], pname)
+	--set pos lobby
 	table.insert(sumo_duels[waiting_arena_ .. arena_number], pname)
 end
 
 sumo_duels.set_lobby = function(pname, current)
 	table.remove(current, name)
+	--set pos lobby
 	table.insert(sumo_duels[lobby], name)
 end
 
