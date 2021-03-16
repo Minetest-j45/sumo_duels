@@ -39,8 +39,10 @@ minetest.register_chatcommand("join", {
 
 minetest.register_globalstep(function(dtime)
 	if #sumo_deuls.teams[arena_1] == 0 then --noone in arena1
-			if #sumo_deuls.teams[waiting_arena_1] >= 2 then
-				sumo_duels.set_playing(player, arena_number)
+		if #sumo_deuls.teams[waiting_arena_1] >= 2 then
+			for name, sumo_duels.teams[waiting_arena_1] = 1,2 do
+				sumo_duels.set_playing(name, "1")
 			end
+		end
 	end
 end)
