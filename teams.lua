@@ -1,6 +1,14 @@
 sumo_deuls.teams = {lobby = {}, waiting_arena_1 = {}, arena_1 = {}}
 
-local sumo_deuls.before = {}
+sumo_duels.set_playing = function(pname, arena_number)
+	table.remove(sumo_duels[waiting_arena_ .. arena_number], pname)
+	table.insert(sumo_duels[arena_ .. arena_number], pname)
+end
+
+sumo_duels.set_waiting = function(pname, arena_number)
+	table.remove(sumo_duels[lobby], pname)
+	table.insert(sumo_duels[waiting_arena_ .. arena_number], pname)
+end
 
 sumo_deuls.get_player_team = function(name)
 	for k, team in pairs(sumo_deuls.teams) do
@@ -11,13 +19,23 @@ sumo_deuls.get_player_team = function(name)
 end
 
 minetest.register_on_joinplayer(function(player)
-    local pname = player:get_player_name() 
+    local pname = player:get_player_name()
     table.insert(sumo_deuls.teams[lobby], pname)
 end)
 
-function sumo_duels.set_playing(player, arena_number)
-	--nothing yet
-end
+minetest.register_chatcommand("join", {
+	params = "number",
+	description = "Join the waiting list for an arena",
+	privs = {play = true},
+	func = function(name, number)
+		if not 
+		local number = number or "1"
+		local player = minetest.get_player_by_name(name)
+		if not player then return end
+		if not player:is_player() then return end
+		sumo_duels.set_waiting(name, number)
+	end,
+})
 
 minetest.register_globalstep(function(dtime)
 	if #sumo_deuls.teams[arena_1] == 0 then --noone in arena1
