@@ -1,5 +1,13 @@
 sumo_deuls.teams = {lobby = {}, waiting_arena_1 = {}, arena_1 = {}}
 
+sumo_deuls.get_player_team = function(name)
+	for k, team in pairs(sumo_deuls.teams) do
+		for _, pname in ipairs(team) do
+			if name == pname then return k end
+		end
+	end
+end
+
 sumo_duels.set_playing = function(pname, arena_number)
 	table.remove(sumo_duels[waiting_arena_ .. arena_number], pname)
 	--set pos arena_1
@@ -12,18 +20,11 @@ sumo_duels.set_waiting = function(pname, arena_number)
 	table.insert(sumo_duels[waiting_arena_ .. arena_number], pname)
 end
 
-sumo_duels.set_lobby = function(pname, current)
-	table.remove(current, name)
+sumo_duels.set_lobby = function(pname)
+	local current = sumo_deuls.get_player_team(pname)
+	table.remove(current, pname)
 	--set pos lobby
-	table.insert(sumo_duels[lobby], name)
-end
-
-sumo_deuls.get_player_team = function(name)
-	for k, team in pairs(sumo_deuls.teams) do
-		for _, pname in ipairs(team) do
-			if name == pname then return k end
-		end
-	end
+	table.insert(sumo_duels[lobby], pname)
 end
 
 minetest.register_on_joinplayer(function(player)
