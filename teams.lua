@@ -36,7 +36,8 @@ end
 sumo_duels.set_lobby = function(pname)
 	local current = sumo_deuls.get_player_team(pname)
 	table.remove(current, pname)
-	--set pos lobby
+	local player = minetest.get_player_by_name(pname)
+	player:set_pos(lobby_pos)
 	table.insert(sumo_duels[lobby], pname)
 end
 
@@ -77,7 +78,6 @@ minetest.register_on_dieplayer(function(player)
 	sumo_deuls.get_other_team_player(player:get_player_name())
 	minetest.chat_send_player(other_player, "Your opponent died! GG, you win")
 	for _, teamplayer in ipairs(sumo_duels.teams[sumo_deuls.get_player_team]) do
-		teamplayer:set_pos(lobby_pos)
 		sumo_duels.set_lobby(teamplayer:get_player_name())
 	end
 end)
