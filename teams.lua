@@ -1,5 +1,7 @@
 sumo_deuls.teams = {lobby = {}, waiting_arena_1 = {}, arena_1 = {}}
 
+local lobby_pos = {x = 0, y = 0, z = 0}
+
 sumo_deuls.get_player_team = function(name)
 	for k, team in pairs(sumo_deuls.teams) do
 		for _, pname in ipairs(team) do
@@ -74,4 +76,7 @@ end)
 minetest.register_on_dieplayer(function(player)
 	sumo_deuls.get_other_team_player(player:get_player_name())
 	minetest.chat_send_player(other_player, "Your opponent died! GG, you win")
+	for _, teamplayer in ipairs(sumo_duels.teams[sumo_deuls.get_player_team]) do
+		teamplayer:set_pos(lobby_pos)
+		sumo_duels.set_lobby(teamplayer:get_player_name())
 end)
