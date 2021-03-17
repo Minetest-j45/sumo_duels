@@ -8,6 +8,15 @@ sumo_deuls.get_player_team = function(name)
 	end
 end
 
+local other_player
+sumo_deuls.get_other_team_player = function(name)
+	local current = sumo_deuls.get_player_team(name)
+	for k, player in pairs(sumo_deuls.teams[current]) do
+		local pname = player:get_player_name()
+		if not name == pname then other_player = pname end
+	end
+end
+
 sumo_duels.set_playing = function(pname, arena_number)
 	local current = sumo_deuls.get_player_team(pname)
 	table.remove(current, pname)
@@ -60,4 +69,9 @@ minetest.register_globalstep(function(dtime)
 			sumo_duels.set_lobby(name, arena_1)
 		end
 	end
+end)
+
+minetest.register_on_dieplayer(function(player)
+	sumo_deuls.get_other_team_player(player:get_player_name())
+	minetest.chat_send_player(other_player, "Your opponent died! GG, you win")
 end)
