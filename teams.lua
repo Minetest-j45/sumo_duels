@@ -9,13 +9,15 @@ sumo_deuls.get_player_team = function(name)
 end
 
 sumo_duels.set_playing = function(pname, arena_number)
-	table.remove(sumo_duels[waiting_arena_ .. arena_number], pname)
+	local current = sumo_deuls.get_player_team(pname)
+	table.remove(current, pname)
 	--set pos arena_1
 	table.insert(sumo_duels[arena_ .. arena_number], pname)
 end
 
 sumo_duels.set_waiting = function(pname, arena_number)
-	table.remove(sumo_duels[lobby], pname)
+	local current = sumo_deuls.get_player_team(pname)
+	table.remove(current, pname)
 	--set pos lobby
 	table.insert(sumo_duels[waiting_arena_ .. arena_number], pname)
 end
