@@ -79,4 +79,5 @@ minetest.register_on_dieplayer(function(player)
 	for _, teamplayer in ipairs(sumo_duels.teams[sumo_deuls.get_player_team]) do
 		teamplayer:set_pos(lobby_pos)
 		sumo_duels.set_lobby(teamplayer:get_player_name())
+	end
 end)
