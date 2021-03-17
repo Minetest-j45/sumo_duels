@@ -68,7 +68,7 @@ minetest.register_globalstep(function(dtime)
 			end
 		end
 	elseif #sumo_deuls.teams[arena_1] == 1 then
-		for name, sumo_duels.teams[arena_1] = 1 do
+		for _, name in ipairs(sumo_duels.teams[arena_1]) do
 			sumo_duels.set_lobby(name, arena_1)
 		end
 	end
