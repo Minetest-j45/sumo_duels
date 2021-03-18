@@ -29,7 +29,8 @@ end
 sumo_duels.set_waiting = function(pname, arena_number)
 	local current = sumo_deuls.get_player_team(pname)
 	table.remove(current, pname)
-	--set pos lobby
+	local player = minetest.get_player_by_name(pname)
+	player:set_pos(lobby_pos)
 	table.insert(sumo_duels[waiting_arena_ .. arena_number], pname)
 end
 
