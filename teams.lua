@@ -70,6 +70,7 @@ minetest.register_globalstep(function(dtime)
 		end
 	elseif #sumo_deuls.teams[arena_1] == 1 then
 		for _, name in ipairs(sumo_duels.teams[arena_1]) do
+			minetest.chat_send_player(name, "Your opponent left. GG in a way. lol")
 			sumo_duels.set_lobby(name, arena_1)
 		end
 	end
