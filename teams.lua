@@ -52,7 +52,7 @@ minetest.register_chatcommand("join", {
 	description = "Join the waiting list for an arena",
 	privs = {play = true},
 	func = function(name, number)
-		if not 
+		if not name then return end
 		local number = number or "1"
 		local player = minetest.get_player_by_name(name)
 		if not player then return end
