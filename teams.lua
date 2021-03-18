@@ -13,7 +13,7 @@ end
 local other_player
 sumo_deuls.get_other_team_player = function(name)
 	local current = sumo_deuls.get_player_team(name)
-	for k, player in pairs(sumo_deuls.teams[current]) do
+	for _, player in pairs(sumo_deuls.teams[current]) do
 		local pname = player:get_player_name()
 		if not name == pname then other_player = pname end
 	end
