@@ -13,7 +13,8 @@ end
 local other_player
 sumo_duels.get_other_team_player = function(name)
 	local current = sumo_duels.get_player_team(name)
-	for _, player in pairs(sumo_duels.teams[current]) do
+	for _, playername in pairs(sumo_duels.teams[current]) do
+		local player = minetest.get_player_by_name(playername)
 		local pname = player:get_player_name()
 		if not name == pname then other_player = pname end
 	end
@@ -21,14 +22,15 @@ end
 
 sumo_duels.set_playing = function(pname, arena_number)
 	local current = sumo_duels.get_player_team(pname)
-	table.remove(current, pname)
+	table.remove(sumo_duels.teams[current], pname)
 	--set pos arena_1
 	table.insert(sumo_duels.teams["arena_" .. arena_number], pname)
 end
 
 sumo_duels.set_waiting = function(pname, arena_number)
+	minetest.chat_send_all(sumo_duels.get_player_team(pname))
 	local current = sumo_duels.get_player_team(pname)
-	table.remove(current, pname)
+	table.remove(sumo_duels.teams[current], pname)
 	local player = minetest.get_player_by_name(pname)
 	player:set_pos(lobby_pos)
 	table.insert(sumo_duels.teams["waiting_arena_" .. arena_number], pname)
@@ -36,7 +38,7 @@ end
 
 sumo_duels.set_lobby = function(pname)
 	local current = sumo_duels.get_player_team(pname)
-	table.remove(current, pname)
+	table.remove(sumo_duels.teams[current], pname)
 	local player = minetest.get_player_by_name(pname)
 	player:set_pos(lobby_pos)
 	table.insert(sumo_duels.teams.lobby, pname)
@@ -45,6 +47,7 @@ end
 minetest.register_on_joinplayer(function(player)
     local pname = player:get_player_name()
     table.insert(sumo_duels.teams.lobby, pname)
+    minetest.chat_send_all(dump(sumo_duels.teams))
 end)
 
 minetest.register_chatcommand("join", {
@@ -76,9 +79,13 @@ minetest.register_globalstep(function(dtime)
 end)
 
 minetest.register_on_dieplayer(function(player)
+	local team = sumo_duels.get_player_team(player:get_player_name())
+	if not team == "arena_1" then return end
 	sumo_duels.get_other_team_player(player:get_player_name())
-	minetest.chat_send_player(other_player, "Your opponent died! GG, you win")
-	for _, teamplayer in ipairs(sumo_duels.teams[sumo_duels.get_player_team[player:get_player_name()]]) do
-		sumo_duels.set_lobby(teamplayer:get_player_name())
+	if other_player then
+		minetest.chat_send_player(other_player, "Your opponent died! GG, you win")
+	end
+	for _, teamplayer in ipairs(sumo_duels.teams[team]) do
+		sumo_duels.set_lobby(teamplayer)
 	end
 end)
