@@ -94,7 +94,7 @@ end)
 
 minetest.register_on_dieplayer(function(player)
 	local team = sumo_duels.get_player_team(player:get_player_name())
-	if not team == "arena_1" then return end
+	if not team == "arena_1" or not team == "arena_2" or not team == "arena_3" then return end
 	if sumo_duels.get_other_team_player(player:get_player_name()) then
 		minetest.chat_send_player(sumo_duels.get_other_team_player(player:get_player_name()), "Your opponent died! GG, you win")
 	end
