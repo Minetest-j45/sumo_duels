@@ -101,7 +101,7 @@ minetest.register_chatcommand("lobby", {
 		if not player then return end
 		if not player:is_player() then return end
 		local current = sumo_duels.get_player_team(name)
-		if current = "arena_1" or current = "arena_2" or current = "arena_3" then return false, "You are in a game, dont try escape" end
+		if current:match("arena_%d+") then return false, "You are in a game, dont try escape" end
 		sumo_duels.set_lobby(name)
 	end,
 })
