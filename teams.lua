@@ -93,7 +93,7 @@ minetest.register_globalstep(function(dtime)--for arena_1 and its waiting list
 	elseif #sumo_duels.teams.arena_1 == 1 then
 		for _, name in ipairs(sumo_duels.teams.arena_1) do
 			minetest.chat_send_player(name, "Your opponent left. GG in a way. lol")
-			sumo_duels.set_lobby(name, "arena_1")
+			sumo_duels.set_lobby(name)
 		end
 	end
 end)
@@ -106,7 +106,7 @@ minetest.register_globalstep(function(dtime)--for arena_2 and its waiting list
 	elseif #sumo_duels.teams.arena_2 == 1 then
 		for _, name in ipairs(sumo_duels.teams.arena_2) do
 			minetest.chat_send_player(name, "Your opponent left. GG in a way. lol")
-			sumo_duels.set_lobby(name, "arena_2")
+			sumo_duels.set_lobby(name)
 		end
 	end
 end)
@@ -119,7 +119,7 @@ minetest.register_globalstep(function(dtime)--for arena_3 and its waiting list
 	elseif #sumo_duels.teams.arena_3 == 1 then
 		for _, name in ipairs(sumo_duels.teams.arena_3) do
 			minetest.chat_send_player(name, "Your opponent left. GG in a way. lol")
-			sumo_duels.set_lobby(name, "arena_3")
+			sumo_duels.set_lobby(name)
 		end
 	end
 end)
