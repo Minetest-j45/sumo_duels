@@ -140,7 +140,7 @@ minetest.register_globalstep(function(dtime)--for arena_3 and its waiting list
 		end
 	elseif #sumo_duels.teams.arena_3 == 1 then
 		for _, name in ipairs(sumo_duels.teams.arena_3) do
-			minetest.chat_send_player(name, "Your opponent left. GG in a way. lol")
+			minetest.chat_send_player(name, "Your opponent left. GG... in a way. lol")
 			sumo_duels.set_lobby(name)
 		end
 	end
