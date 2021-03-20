@@ -71,6 +71,13 @@ minetest.register_on_joinplayer(function(player)
     minetest.chat_send_all(dump(sumo_duels.teams))
 end)
 
+minetest.register_on_leaveplayer(function(player)
+	local pname = player:get_player_name()
+	local current = sumo_duels.get_player_team(pname)
+	local tablenumber = sumo_duels.tablefind(sumo_duels.teams[current], pname)
+	table.remove(sumo_duels.teams[current], tonumber(tablenumber))
+end)
+
 minetest.register_chatcommand("join", {
 	params = "number",
 	description = "Join the waiting list for an arena",
