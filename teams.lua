@@ -33,7 +33,13 @@ sumo_duels.set_playing = function(pname, arena_number)
 	local tablenumber = sumo_duels.tablefind(sumo_duels.teams[current], pname)
 	table.remove(sumo_duels.teams[current], tonumber(tablenumber))
 	local player = minetest.get_player_by_name(pname)
-	player:set_pos(arena_1_pos)
+	if arena_number == "1" then
+		player:set_pos(arena_1_pos)
+	elseif arena_number == "2" then
+		player:set_pos(arena_2_pos)
+	elseif arena_number == "3" then
+		player:set_pos(arena_3_pos)
+	end
 	table.insert(sumo_duels.teams["arena_" .. arena_number], pname)
 	minetest.chat_send_all(dump(sumo_duels.teams))
 end
