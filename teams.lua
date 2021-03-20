@@ -1,6 +1,7 @@
 sumo_duels.teams = {lobby = {}, waiting_arena_1 = {}, arena_1 = {}}
 
-local lobby_pos = {x = 0, y = 0, z = 0}--set world spawn to this too
+local lobby_pos = {x = 0, y = 100, z = 0}--set world spawn to this too
+local arena_1_pos = {x = 0, y = 80, z = 0}
 
 sumo_duels.tablefind = function(tab,el)
 	for index, value in pairs(tab) do
@@ -29,7 +30,8 @@ sumo_duels.set_playing = function(pname, arena_number)
 	local current = sumo_duels.get_player_team(pname)
 	local tablenumber = sumo_duels.tablefind(sumo_duels.teams[current], pname)
 	table.remove(sumo_duels.teams[current], tonumber(tablenumber))
-	--set pos arena_1
+	local player = minetest.get_player_by_name(pname)
+	player:set_pos(arena_1_pos)
 	table.insert(sumo_duels.teams["arena_" .. arena_number], pname)
 	minetest.chat_send_all(dump(sumo_duels.teams))
 end
