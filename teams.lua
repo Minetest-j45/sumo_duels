@@ -1,9 +1,9 @@
 sumo_duels.teams = {lobby = {}, waiting_arena_1 = {}, arena_1 = {}, waiting_arena_2 = {}, arena_2 = {}, waiting_arena_3 = {}, arena_3 = {}}
 
 local lobby_pos = {x = 0, y = 100, z = 0}--set world spawn to this too
-local arena_1_pos = {x = 0, y = 80, z = 0}
-local arena_2_pos = {x = 0, y = 80, z = 0}
-local arena_3_pos = {x = 0, y = 80, z = 0}
+local arena_1_pos = {x = 0, y = 81, z = 7}
+local arena_2_pos = {x = 8, y = 81, z = -7}
+local arena_3_pos = {x = -8, y = 81, z = -7}
 
 sumo_duels.tablefind = function(tab,el)
 	for index, value in pairs(tab) do
