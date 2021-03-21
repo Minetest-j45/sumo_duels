@@ -16,7 +16,7 @@ minetest.register_on_joinplayer(function(player)
 	minetest.after(1, sumo_duels.hud_update, nil)
 end)
 
-bedwars.hud_update = function()
+sumo_duels.hud_update = function()
 	local players = minetest.get_connected_players()
 	for _, player in ipairs(players) do
 		local pname = player:get_player_name()
