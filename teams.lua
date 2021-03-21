@@ -46,7 +46,8 @@ end
 
 sumo_duels.set_waiting = function(pname, arena_number)
 	local current = sumo_duels.get_player_team(pname)
-	if current:match("arena_%d+") then return false, "You are already in a game or in the queue for a game, if you want to exit the queue, do /lobby" end
+	minetest.chat_send_all(current)
+	if current:match("^arena_%d+") then return false, "You are in a game, dont try escape" end
 	local tablenumber = sumo_duels.tablefind(sumo_duels.teams[current], pname)
 	table.remove(sumo_duels.teams[current], tonumber(tablenumber))
 	local player = minetest.get_player_by_name(pname)
@@ -101,6 +102,7 @@ minetest.register_chatcommand("lobby", {
 		if not player then return end
 		if not player:is_player() then return end
 		local current = sumo_duels.get_player_team(name)
+		minetest.chat_send_all(current)
 		if current:match("^arena_%d+") then return false, "You are in a game, dont try escape" end
 		sumo_duels.set_lobby(name)
 	end,
