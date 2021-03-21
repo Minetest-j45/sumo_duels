@@ -35,6 +35,6 @@ bedwars.hud_update = function()
 		"Waiting Arena 3: " .. sumo_duels.hud_team_info["waiting_arena_3"] .. "\n" ..
 		"Arena 3: " .. sumo_duels.hud_team_info["arena_3"]
 		
-		player:hud_change(sumo_duels.huds[pname)], "text", text)
+		player:hud_change(sumo_duels.huds[pname], "text", text)
 	end
 end
