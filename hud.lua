@@ -20,8 +20,10 @@ sumo_duels.hud_update = function()
 	local players = minetest.get_connected_players()
 	for _, player in ipairs(players) do
 		local pname = player:get_player_name()
-		for _, team in ipairs(sumo_duels.teams) do
+		for _, team in pairs(sumo_duels.team_names) do
 			sumo_duels.hud_team_info[team] = #sumo_duels.teams[team]
+			minetest.chat_send_all(dump(team))
+			minetest.chat_send_all(dump(sumo_duels.hud_team_info))
 		end
 		local text = "You are in: " .. sumo_duels.get_player_team(pname) .. "\n" ..
 		"Lobby: " .. sumo_duels.hud_team_info["lobby"] .. "\n" ..
@@ -32,7 +34,7 @@ sumo_duels.hud_update = function()
 		"Waiting Arena 2: " .. sumo_duels.hud_team_info["waiting_arena_2"] .. "\n" ..
 		"Arena 2: " .. sumo_duels.hud_team_info["arena_2"] .. "\n" ..
 		
-		"Waiting Arena 3: " .. sumo_duels.hud_team_info["waiting_arena_3"] .. "\n" ..
+		"Waiting Arena 3: " .. sumo_duels.hud_team_info[waiting_arena_3] .. "\n" ..
 		"Arena 3: " .. sumo_duels.hud_team_info["arena_3"]
 		
 		player:hud_change(sumo_duels.huds[pname], "text", text)
