@@ -21,7 +21,7 @@ sumo_duels.hud_update = function()
 	for _, player in ipairs(players) do
 		local pname = player:get_player_name()
 		for _, team in ipairs(sumo_duels.teams) do
-			sumo_duels.hud_team_info[team] = tostring(#sumo_duels.teams[team])
+			sumo_duels.hud_team_info[team] = #sumo_duels.teams[team]
 		end
 		local text = "You are in: " .. sumo_duels.get_player_team(pname) .. "\n" ..
 		"Lobby: " .. sumo_duels.hud_team_info["lobby"] .. "\n" ..
