@@ -42,6 +42,7 @@ sumo_duels.set_playing = function(pname, arena_number)
 		player:set_pos(arena_3_pos)
 	end
 	table.insert(sumo_duels.teams["arena_" .. arena_number], pname)
+	sumo_duels.hud_update()
 end
 
 sumo_duels.set_waiting = function(pname, arena_number)
@@ -53,6 +54,7 @@ sumo_duels.set_waiting = function(pname, arena_number)
 	local player = minetest.get_player_by_name(pname)
 	player:set_pos(lobby_pos)
 	table.insert(sumo_duels.teams["waiting_arena_" .. arena_number], pname)
+	sumo_duels.hud_update()
 end
 
 sumo_duels.set_lobby = function(pname)
@@ -62,11 +64,13 @@ sumo_duels.set_lobby = function(pname)
 	local player = minetest.get_player_by_name(pname)
 	player:set_pos(lobby_pos)
 	table.insert(sumo_duels.teams.lobby, pname)
+	sumo_duels.hud_update()
 end
 
 minetest.register_on_joinplayer(function(player)
     local pname = player:get_player_name()
     table.insert(sumo_duels.teams.lobby, pname)
+    sumo_duels.hud_update()
 end)
 
 minetest.register_on_leaveplayer(function(player)
@@ -74,6 +78,7 @@ minetest.register_on_leaveplayer(function(player)
 	local current = sumo_duels.get_player_team(pname)
 	local tablenumber = sumo_duels.tablefind(sumo_duels.teams[current], pname)
 	table.remove(sumo_duels.teams[current], tonumber(tablenumber))
+	sumo_duels.hud_update()
 end)
 
 minetest.register_chatcommand("join", {
