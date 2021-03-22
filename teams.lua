@@ -70,7 +70,6 @@ end
 minetest.register_on_joinplayer(function(player)
     local pname = player:get_player_name()
     table.insert(sumo_duels.teams.lobby, pname)
-    sumo_duels.hud_update()
 end)
 
 minetest.register_on_leaveplayer(function(player)
