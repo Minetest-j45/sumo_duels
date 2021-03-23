@@ -47,7 +47,6 @@ end
 
 sumo_duels.set_waiting = function(pname, arena_number)
 	local current = sumo_duels.get_player_team(pname)
-	minetest.chat_send_all(current)
 	if current:match("^arena_%d+") then return false, "You are in a game, dont try escape" end
 	local tablenumber = sumo_duels.tablefind(sumo_duels.teams[current], pname)
 	table.remove(sumo_duels.teams[current], tonumber(tablenumber))
@@ -86,11 +85,12 @@ minetest.register_chatcommand("join", {
 	privs = {play = true},
 	func = function(name, number)
 		if not name then return end
-		local number = number or "1"
 		local player = minetest.get_player_by_name(name)
 		if not player then return end
 		if not player:is_player() then return end
-		sumo_duels.set_waiting(name, number)
+		if number == "1" or number == "2" or number == "3" then
+			sumo_duels.set_waiting(name, number)
+		else return false, "You must put a number from 1 to 3 to join a waiting list for an arena" end
 	end,
 })
 
@@ -103,7 +103,6 @@ minetest.register_chatcommand("lobby", {
 		if not player then return end
 		if not player:is_player() then return end
 		local current = sumo_duels.get_player_team(name)
-		minetest.chat_send_all(current)
 		if current:match("^arena_%d+") then return false, "You are in a game, dont try escape" end
 		sumo_duels.set_lobby(name)
 	end,
