@@ -1,7 +1,7 @@
 sumo_duels.teams = {lobby = {}, waiting_arena_1 = {}, arena_1 = {}, waiting_arena_2 = {}, arena_2 = {}, waiting_arena_3 = {}, arena_3 = {}}
 sumo_duels.team_names = {"lobby", "waiting_arena_1", "arena_1", "waiting_arena_2", "arena_2", "waiting_arena_3", "arena_3"}
 
-local lobby_pos = {x = 0, y = 100, z = 0}--set world spawn to this too
+local lobby_pos = {x = 0, y = 100, z = 0}
 local arena_1_pos = {x = 0, y = 81, z = 7}
 local arena_2_pos = {x = 8, y = 81, z = -7}
 local arena_3_pos = {x = -8, y = 81, z = -7}
