@@ -24,9 +24,11 @@ sumo_duels.hud_update = function()
 			sumo_duels.hud_team_info[team] = tostring(#sumo_duels.teams[team])
 		end
 		
-		local text = "You are in: " .. sumo_duels.get_player_team(pname) .. "\n" ..
-		"Lobby: " .. sumo_duels.hud_team_info["lobby"] .. "\n" ..
+		local text = "You are in: \n" ..
+		sumo_duels.get_player_team(pname) .. "\n" ..
 		
+		"Lobby: " .. sumo_duels.hud_team_info["lobby"] .. "\n" ..
+		 
 		"Waiting Arena 1: " .. sumo_duels.hud_team_info["waiting_arena_1"] .. "\n" ..
 		"Arena 1: " .. sumo_duels.hud_team_info["arena_1"] .. "\n" ..
 		
