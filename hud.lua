@@ -16,6 +16,10 @@ minetest.register_on_joinplayer(function(player)
 	minetest.after(1, sumo_duels.hud_update, nil)
 end)
 
+minetest.register_on_leaveplayer(function(player)
+	sumo_duels.huds[player:get_player_name()] = nil
+end)
+
 sumo_duels.hud_update = function()
 	local players = minetest.get_connected_players()
 	for _, player in ipairs(players) do
