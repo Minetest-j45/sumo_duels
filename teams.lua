@@ -76,7 +76,9 @@ minetest.register_on_leaveplayer(function(player)
 	local current = sumo_duels.get_player_team(pname)
 	local tablenumber = sumo_duels.tablefind(sumo_duels.teams[current], pname)
 	table.remove(sumo_duels.teams[current], tonumber(tablenumber))
-	sumo_duels.hud_update()
+	minetest.after(0, function()
+		sumo_duels.hud_update()
+	end)
 end)
 
 minetest.register_chatcommand("join", {
