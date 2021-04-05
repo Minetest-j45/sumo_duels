@@ -126,8 +126,8 @@ end)
 minetest.register_globalstep(function(dtime)--for arena_2 and its waiting list
 	if #sumo_duels.teams.arena_2 == 0 then --noone in arena_2
 		if #sumo_duels.teams.waiting_arena_2 >= 2 then
-			sumo_duels.set_playing(sumo_duels.teams.waiting_arena_2[1], "1") 
-			sumo_duels.set_playing(sumo_duels.teams.waiting_arena_2[1], "1") 
+			sumo_duels.set_playing(sumo_duels.teams.waiting_arena_2[1], "2") 
+			sumo_duels.set_playing(sumo_duels.teams.waiting_arena_2[1], "2") 
 		end
 	elseif #sumo_duels.teams.arena_2 == 1 then
 		for _, name in ipairs(sumo_duels.teams.arena_2) do
@@ -139,8 +139,8 @@ end)
 minetest.register_globalstep(function(dtime)--for arena_3 and its waiting list
 	if #sumo_duels.teams.arena_3 == 0 then --noone in arena_3
 		if #sumo_duels.teams.waiting_arena_3 >= 2 then
-			sumo_duels.set_playing(sumo_duels.teams.waiting_arena_3[1], "1") 
-			sumo_duels.set_playing(sumo_duels.teams.waiting_arena_3[1], "1") 
+			sumo_duels.set_playing(sumo_duels.teams.waiting_arena_3[1], "3") 
+			sumo_duels.set_playing(sumo_duels.teams.waiting_arena_3[1], "3") 
 		end
 	elseif #sumo_duels.teams.arena_3 == 1 then
 		for _, name in ipairs(sumo_duels.teams.arena_3) do
