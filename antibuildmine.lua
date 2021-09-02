@@ -35,3 +35,4 @@ minetest.register_on_dignode(function(pos, oldnode, digger)
 		inv:set_lists(lists)
 	end
 end)
+
