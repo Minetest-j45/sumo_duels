@@ -7,8 +7,8 @@ sumo_duels.messages = {
 local timer = 0
 minetest.register_globalstep(function(dtime)
 	timer = timer + dtime;
-	if timer >= 5 then
-		-- Send message to all players every 5 seconds
+	if timer >= 10 then
+		-- Send message to all players every 10 seconds
     	local random = math.random(1, #sumo_duels.messages)
 		minetest.chat_send_all(minetest.colorize("#999997", sumo_duels.messages[random]))
 		timer = 0
